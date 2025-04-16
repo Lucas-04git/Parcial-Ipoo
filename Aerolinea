@@ -1,0 +1,54 @@
+<?php
+class Aerolinea {
+    private $id;
+    private $nombre;
+    private $vuelos = [];
+
+    public function __construct($id, $nombre) {
+        $this->id = $id;
+        $this->nombre = $nombre;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function getNombre() {
+        return $this->nombre;
+    }
+
+    public function setNombre($nombre) {
+        $this->nombre = $nombre;
+    }
+
+    public function agregarVuelo(Vuelo $vuelo) {
+        $this->vuelos[] = $vuelo;
+    }
+
+    public function mostrarVuelos() {
+        echo "Aerolínea: " . $this->nombre . "\nID: " . $this->id;
+
+        foreach ($this->vuelos as $vuelo) {
+            echo $vuelo;
+        }
+    }
+    public function incorporarVuelo(Vuelo $vuelo) {
+        foreach ($this->vuelos as $v) {
+            if (
+                $v->getDestino() == $vuelo->getDestino() &&
+                $v->getFecha() == $vuelo->getFecha() &&
+                $v->getHoraPartida() == $vuelo->getHoraPartida()
+            ) {
+                return false;
+            }
+        }
+        $this->vuelos[] = $vuelo;
+        return true;
+    }
+}
+?>
+

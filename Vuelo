@@ -1,0 +1,101 @@
+<?php
+class Vuelo {
+    private $numero;
+    private $importe;
+    private $fecha;
+    private $destino;
+    private $horaArribo;
+    private $horaPartida;
+    private $cantAsientosTotales;
+    private $cantAsientosDisponibles;
+    private Persona $responsable;
+
+    public function __construct($numero, $importe, $fecha, $destino, $horaArribo, $horaPartida, $cantAsientosTotales, $cantAsientosDisponibles, $responsable) {
+        $this->numero = $numero;
+        $this->importe = $importe;
+        $this->fecha = $fecha;
+        $this->destino = $destino;
+        $this->horaArribo = $horaArribo;
+        $this->horaPartida = $horaPartida;
+        $this->cantAsientosTotales = $cantAsientosTotales;
+        $this->cantAsientosDisponibles = $cantAsientosDisponibles;
+        $this->responsable = $responsable;
+    }
+
+    public function getNumero() {
+        return $this->numero;
+    }
+    public function setNumero($numero) {
+        $this->numero = $numero;
+    }
+
+    public function getImporte() {
+        return $this->importe;
+    }
+    public function setImporte($importe) {
+        $this->importe = $importe;
+    }
+
+    public function getFecha() {
+        return $this->fecha;
+    }
+    public function setFecha($fecha) {
+        $this->fecha = $fecha;
+    }
+
+    public function getDestino() {
+        return $this->destino;
+    }
+    public function setDestino($destino) {
+        $this->destino = $destino;
+    }
+
+    public function getHoraArribo() {
+        return $this->horaArribo;
+    }
+    public function setHoraArribo($horaArribo) {
+        $this->horaArribo = $horaArribo;
+    }
+
+    public function getHoraPartida() {
+        return $this->horaPartida;
+    }
+    public function setHoraPartida($horaPartida) {
+        $this->horaPartida = $horaPartida;
+    }
+
+    public function getCantAsientosTotales() {
+        return $this->cantAsientosTotales;
+    }
+    public function setCantAsientosTotales($cantAsientosTotales) {
+        $this->cantAsientosTotales = $cantAsientosTotales;
+    }
+
+    public function getCantAsientosDisponibles() {
+        return $this->cantAsientosDisponibles;
+    }
+    public function setCantAsientosDisponibles($cantAsientosDisponibles) {
+        $this->cantAsientosDisponibles = $cantAsientosDisponibles;
+    }
+
+    public function getResponsable() {
+        return $this->responsable;
+    }
+    public function setResponsable($responsable) {
+        $this->responsable = $responsable;
+    }
+    public function asignarAsientosDisponibles($asientosSolicitados) {
+        if ($asientosSolicitados <= $this->cantAsientosDisponibles) {
+            $this->setCantAsientosDisponibles($this->getCantAsientosDisponibles() - $asientosSolicitados);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function __toString() {
+        return "Vuelo Nº: " . $this->numero ."\nImporte: $" . $this->importe ."\nFecha: " . $this->fecha ."\nDestino: ". $this->destino ."\nHora de Partida: ". $this->horaPartida."\nHora de Arribo: ". $this->horaArribo ."\nAsientos Totales: ". $this->cantAsientosTotales. 
+        "\nAsientos Disponibles: ". $this->cantAsientosDisponibles."\nesponsable: ". $this->responsable;
+    }
+}
+?>

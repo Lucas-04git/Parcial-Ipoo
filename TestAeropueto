@@ -1,0 +1,36 @@
+<?php
+
+include'Aeropuerto';
+include 'Aerolinea';
+include 'Vuelo';
+include 'Persona';
+
+$responsable1 = new Persona('Juan', 'Pérez','Calle Ficticia 123', 'juan@mail.com', '123456789');
+$responsable2 = new Persona('Ana', 'Gómez','Calle Ejemplo 456', 'ana@mail.com', '987654321');
+
+$vuelo1 = new Vuelo(101, 1500, '2025-05-01', 'Buenos Aires', '10:00', '12:00', 100, 50, $responsable1);
+$vuelo2 = new Vuelo(102, 2000, '2025-05-01', 'Buenos Aires', '15:00', '17:00', 100, 70, $responsable2);
+$vuelo3 = new Vuelo(103, 1200, '2025-05-02', 'Córdoba', '09:00', '11:00', 100, 30, $responsable1);
+$vuelo4 = new Vuelo(104, 1800, '2025-05-02', 'Córdoba', '13:00', '15:00', 100, 60, $responsable2);
+
+$aerolinea1 = new Aerolinea(1, 'Aerolínea A');
+$aerolinea2 = new Aerolinea(2, 'Aerolínea B');
+
+
+$aerolinea1->agregarVuelo($vuelo1);
+$aerolinea1->agregarVuelo($vuelo3);
+$aerolinea2->agregarVuelo($vuelo2);
+$aerolinea2->agregarVuelo($vuelo4);
+
+$aeropuerto = new Aeropuerto('Aeropuerto Internacional', 'Calle del Aeropuerto 789');
+
+
+$aeropuerto->agregarAerolinea($aerolinea1);
+$aeropuerto->agregarAerolinea($aerolinea2);
+
+
+$idAerolinea = 1;
+$promedioRecaudado = $aeropuerto->promedioRecaudadoXAerolinea($idAerolinea);
+
+echo "Promedio recaudado por la aerolínea con ID $idAerolinea: $" . $promedioRecaudado . "\n";
+?>
